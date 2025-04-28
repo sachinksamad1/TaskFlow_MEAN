@@ -1,0 +1,30 @@
+.task-list-container {
+    margin-top: 20px;
+  }
+  
+  .actions-bar {
+    margin-bottom: 15px;
+    text-align: right;
+  }
+  
+  .task-table {
+    width: 100%;
+  }
+  
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+  
+  .no-tasks {
+      text-align: center;
+      padding: 20px;
+      color: grey;
+  }
+  
+  // Adjust column widths if necessary
+  // .mat-column-description {
+  //   flex: 0 0 40%; /* Example width adjustment */
+  // }

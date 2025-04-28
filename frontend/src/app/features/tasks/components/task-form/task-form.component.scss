@@ -1,0 +1,9 @@
+.full-width {
+    width: 100%;
+    margin-bottom: 15px; // Add spacing between fields
+  }
+  
+  // Make textarea resize vertically if needed
+  textarea {
+      resize: vertical;
+  }

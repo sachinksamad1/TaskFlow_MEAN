@@ -1,0 +1,45 @@
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
+<h1 mat-dialog-title>{{ isEditMode ? 'Edit Task' : 'Add New Task' }}</h1>
+
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()" novalidate>
+  <div mat-dialog-content>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" required cdkFocusInitial>
+      <mat-error *ngIf="f['title'].hasError('required')">
+        Title is required.
+      </mat-error>
+      <mat-error *ngIf="f['title'].hasError('minlength')">
+        Title must be at least {{ f['title'].errors?.['minlength'].requiredLength }} characters long.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description (Optional)</mat-label>
+      <textarea matInput formControlName="description" rows="3"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option *ngFor="let status of statusOptions" [value]="status">
+          {{ status }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="f['status'].hasError('required')">
+        Status is required.
+      </mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <div mat-dialog-actions align="end">
+     <button mat-button type="button" (click)="onCancel()" [disabled]="isLoading">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid || isLoading">
+      <span *ngIf="!isLoading">{{ isEditMode ? 'Update Task' : 'Create Task' }}</span>
+      <span *ngIf="isLoading">Saving...</span>
+    </button>
+  </div>
+</form>
